@@ -1,10 +1,3 @@
-spring:
-  datasource:
-    driver:
-      class: com.mysql.jdbc.Driver
-    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/test}
-    password: ${SPRING_DATASOURCE_PASSWORD:root}
-    username: ${SPRING_DATASOURCE_USERNAME:root}
 
 app:
   config:
@@ -34,12 +27,3 @@ app:
         lowest: 2500
         cost-value: 0.05
         rule-name: LARGE_VOLUME
-server:
-  port: 8088
-  servlet:
-    context-path: /parcelservice/
-
-connector:
-  voucher-service:
-    url: https://mynt-exam.mocklab.io/
-
