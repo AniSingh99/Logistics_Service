@@ -15,4 +15,14 @@ public class DeliveryRule {
     private double lowest;
     private double costValue;
     private RulePriority ruleName;
+
+    @Override
+    public String toString() {
+        return "DeliveryRule{" +
+                "highest=" + highest +
+                ", lowest=" + lowest +
+                ", costValue=" + costValue +
+                ", ruleName=" + ruleName +
+                '}';
+    }
 }

@@ -10,6 +10,7 @@ import com.logistic.parcel.constant.VoucherCode;
 import com.logistic.parcel.exception.ParcelException;
 import com.logistic.parcel.helper.Converter;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.Objects;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class ParcelServiceImpl implements ParcelService {
     private ParcelValidationConfig parcelValidationConfig;
     private VoucherService voucherService;
@@ -25,6 +27,7 @@ public class ParcelServiceImpl implements ParcelService {
     public ParcelDataResponse getDeliveryCost(ParcelDataRequest parcelDataRequest, String voucherCode) {
         double parcelVolume = getParcelVolume(parcelDataRequest);
         double parcelWeight = parcelDataRequest.getParcelWeight();
+        log.info("parcelVolume: {}, parcelWeight: {}", parcelVolume, parcelWeight);
         double deliveryCharges;
 
         List<DeliveryRule> weightRules = Converter.getWeightRules(parcelValidationConfig);
@@ -32,6 +35,7 @@ public class ParcelServiceImpl implements ParcelService {
 
         double discountAmt = (Objects.nonNull(voucherCode)) ?
                 (voucherService.getVoucherDiscount(getRequestVoucherCode(voucherCode))) : 0;
+        log.info("discountAmt: {}", discountAmt);
 
         DeliveryRule weightDeliveryRule = weightRules.stream()
                 .filter(deliveryRule -> ((deliveryRule.getHighest() > 0)?
@@ -44,7 +48,10 @@ public class ParcelServiceImpl implements ParcelService {
                 (deliveryRule.getHighest() >= parcelVolume && parcelVolume >= deliveryRule.getLowest()):
                 (parcelVolume >= deliveryRule.getLowest())))
                 .findAny().orElse(null);
+        log.info("weightRule: {}", weightDeliveryRule.toString());
+        log.info("VolumeRule: {}", volumeDeliveryRule.toString());
 
+        // Weight rules precede over Volume rules
         if(Objects.nonNull(weightDeliveryRule)){
             deliveryCharges = getDeliveryCosts(parcelVolume, weightDeliveryRule, discountAmt);
             return getParcelDeliveryCost(deliveryCharges, discountAmt, weightDeliveryRule.getRuleName());

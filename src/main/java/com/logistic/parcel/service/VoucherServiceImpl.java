@@ -16,8 +16,10 @@ public class VoucherServiceImpl implements VoucherService {
     @Override
     public double getVoucherDiscount(VoucherCode voucherCode) {
         try {
+            // calling voucher service
             return voucherFeignClient.getVoucherDiscount(voucherCode, KEY_VALUE).getDiscount();
         } catch (Exception e) {
+            // return 0 discount if voucher code is invalid
             return 0;
         }
     }
