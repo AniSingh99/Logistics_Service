@@ -28,4 +28,16 @@ public class ParcelDataResponseTest {
         assertEquals(10, 00, parcelDataResponse.getDiscountAmt());
         assertEquals(RulePriority.HEAVY_WEIGHT, parcelDataResponse.getPriorityLevel());
     }
+
+    @Test
+    void testConstructor3() {
+        ParcelDataResponse parcelDataResponse = ParcelDataResponse.builder()
+                .deliveryCost(10)
+                .discountAmt(10)
+                .priorityLevel(RulePriority.HEAVY_WEIGHT).build();
+
+        assertEquals(10, parcelDataResponse.getDeliveryCost());
+        assertEquals(10, parcelDataResponse.getDiscountAmt());
+        assertEquals(RulePriority.HEAVY_WEIGHT, parcelDataResponse.getPriorityLevel());
+    }
 }

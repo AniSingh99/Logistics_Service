@@ -30,7 +30,7 @@ app:
         cost-value: 0.04
         rule-name: MEDIUM_VOLUME
       large:
-        highest: -1
+        highest: 0
         lowest: 2500
         cost-value: 0.05
         rule-name: LARGE_VOLUME

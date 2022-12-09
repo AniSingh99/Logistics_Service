@@ -1,7 +1,6 @@
 package com.logistic.parcel.util.feign;
 
 import com.logistic.parcel.bean.response.VoucherResponse;
-import com.logistic.parcel.constant.VoucherCode;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +14,6 @@ import static com.logistic.parcel.constant.ParcelConstant.VOUCHER_URL;
 public interface VoucherFeignClient {
 
     @GetMapping(VOUCHER_URL)
-    VoucherResponse getVoucherDiscount(@PathVariable(VOUCHER_CODE) VoucherCode voucherCode,
+    VoucherResponse getVoucherDiscount(@PathVariable(VOUCHER_CODE) String voucherCode,
                                        @RequestParam(KEY) String key);
 }

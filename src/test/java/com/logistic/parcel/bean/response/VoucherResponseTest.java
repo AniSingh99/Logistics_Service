@@ -1,6 +1,5 @@
 package com.logistic.parcel.bean.response;
 
-import com.logistic.parcel.constant.VoucherCode;
 import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
@@ -12,29 +11,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class VoucherResponseTest {
     @Test
     void testConstructor() throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String dateString = "2022-01-01";
-        Date expiry = dateFormat.parse(dateString);
-        VoucherResponse voucherResponse = new VoucherResponse(VoucherCode.GFI, 10.00, expiry);
-        voucherResponse.setCode(VoucherCode.GFI);
+        VoucherResponse voucherResponse = new VoucherResponse("XXX", 10.00, "2022-01-01");
+        voucherResponse.setCode("XXX");
         voucherResponse.setDiscount(10.00);
-        voucherResponse.setExipry(expiry);
+        voucherResponse.setExpiry("2022-01-01");
         assertEquals(10.00, voucherResponse.getDiscount());
-        assertEquals(VoucherCode.GFI, voucherResponse.getCode());
-        assertEquals(expiry, voucherResponse.getExipry());
+        assertEquals("XXX", voucherResponse.getCode());
+        assertEquals("2022-01-01", voucherResponse.getExpiry());
     }
 
     @Test
-    void testConstructor2() throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String dateString = "2022-01-01";
-        Date expiry = dateFormat.parse(dateString);
+    void testConstructor2() throws ParseException {;
         VoucherResponse voucherResponse = new VoucherResponse();
-        voucherResponse.setCode(VoucherCode.GFI);
+        voucherResponse.setCode("XXX");
         voucherResponse.setDiscount(10.00);
-        voucherResponse.setExipry(expiry);
+        voucherResponse.setExpiry("2022-01-01");
         assertEquals(10.00, voucherResponse.getDiscount());
-        assertEquals(VoucherCode.GFI, voucherResponse.getCode());
-        assertEquals(expiry, voucherResponse.getExipry());
+        assertEquals("XXX", voucherResponse.getCode());
+        assertEquals("2022-01-01", voucherResponse.getExpiry());
     }
 }

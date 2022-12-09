@@ -4,11 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 
 import com.logistic.parcel.constant.RulePriority;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@ContextConfiguration(classes = ParcelValidationConfig.class)
-@ActiveProfiles("test")
+@ExtendWith(SpringExtension.class)
+@EnableConfigurationProperties(value = ParcelValidationConfig.class)
 class ParcelValidationConfigTest {
 
     @Test

@@ -9,8 +9,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class DummyApplicationTests {
 
+    @Autowired
+    private ParcelController parcelController;
+
     @Test
     void contextLoads() {
+        Assertions.assertAll("Card service context load",
+                () -> Assertions.assertNotNull(parcelController)
+        );
     }
 
 }

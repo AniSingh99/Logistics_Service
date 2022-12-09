@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class LoggingAdvice {
 
-    @Pointcut(value = "execution(* com.mynt.parcel..*.*.*(..)) " +
-            "&& !execution(* com.mynt.parcel.config..*(..))")
+    @Pointcut(value = "execution(* com.logistic.parcel..*.*.*(..)) " +
+            "&& !execution(* com.logistic.parcel.config..*(..))")
     public void allMethods() {
     } // representing all methods in the project
 
